@@ -9,7 +9,8 @@ model:
   seq_len: 1024
 trainer:
   wandb:
-    project: "north-levander"
+    entity: "nbailab"
+    project: "north-mistral"
     tags: ["openwebtext", "mistral"]
     entity: north-mistral-first-test
   mp: p=f32,c=bfloat16
