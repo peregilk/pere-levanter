@@ -1,0 +1,36 @@
+data:
+  id: "NbAiLab/NCC_plus_scandi"
+  stream: true
+  cache_dir: "gs://levanter-cache-eu/tokenized/openwebtext_llama/"
+  tokenizer: "mistralai/Mistral-7B-v0.1"
+model:
+  type: mistral
+  initialize_from_hf: "mistralai/Mistral-7B-v0.1"
+  use_hf_model_config: true
+  use_flash_attention: true
+  seq_len: 1024
+trainer:
+  wandb:
+    project: "north-levander"
+    tags: ["openwebtext", "mistral"]
+    entity: north-mistral-first-test
+  mp: p=f32,c=bfloat16
+  train_batch_size: 128  # set 256 for v4-64 TPU
+  num_train_steps: 10000
+  steps_per_eval: 250
+  tensor_parallel_axes: ["mlp", "heads"]
+  fsdp_axis: "embed"
+  batch_axis: "batch"
+checkpointer:
+  base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/checkpoints"
+  save_interval: 1h
+  keep:
+    - every: 1000
+hf_save_steps: 5000
+hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/checkpoints/hf"
+optimizer:
+  learning_rate: 1.2E-5  # set low for fine-tuning
+  weight_decay: 0.1
+  min_lr_ratio: 0.1
+  lr_schedule: cosine
+  warmup: 0.01
