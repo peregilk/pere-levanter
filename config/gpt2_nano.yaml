@@ -14,8 +14,8 @@ trainer:
       - every: 50
     save_interval: 5m
 
-  per_device_parallelism: -1
-  train_batch_size: 32
+  per_device_parallelism: 1
+  train_batch_size: 128
 
   tensor_parallel_axes: ["mlp", "heads"]
   fsdp_axis: "embed"
