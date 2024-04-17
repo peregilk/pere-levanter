@@ -30,7 +30,7 @@ trainer:
 initialize_from_hf: "mistralai/Mistral-7B-v0.1"
 use_hf_model_config: true
 hf_save_steps: 5000
-hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/checkpoints/hf"
+hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/hf"
 optimizer:
   learning_rate: 1.2E-5  # set low for fine-tuning
   weight_decay: 0.1
