@@ -8,7 +8,7 @@ data:
 model:
   type: mistral
   use_flash_attention: true
-  seq_len: 1024
+  seq_len: 256
 trainer:
   wandb:
     entity: "nbailab"
@@ -16,7 +16,7 @@ trainer:
     tags: ["openwebtext", "mistral"]
     name: north-mistral-first-test
   mp: p=f32,c=bfloat16
-  train_batch_size: 64  # set 256 for v4-64 TPU
+  train_batch_size: 128  # set 256 for v4-64 TPU
   num_train_steps: 10000
   steps_per_eval: 250
   tensor_parallel_axes: ["mlp", "heads"]
