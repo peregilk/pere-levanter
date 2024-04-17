@@ -19,8 +19,6 @@ model:
   upcast_attn: false
   use_flash_attention: true
   flash_attention_block_size: null
-  gradient_checkpointing: true
-  gradient_checkpointing_block_size: 5
   scan_layers: true
   use_bias: false
   rope_scaling: null
