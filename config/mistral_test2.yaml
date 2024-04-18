@@ -38,7 +38,6 @@ trainer:
   batch_axis: "batch"
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/checkpoints"
-    save_interval: 1h
     keep:
       - every: 1000
 initialize_from_hf: "mistralai/Mistral-7B-v0.1"
