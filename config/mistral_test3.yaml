@@ -30,7 +30,7 @@ trainer:
     tags: ["openwebtext", "mistral"]
     name: north-mistral-scandengtoken-test
   mp: p=f32,c=bfloat16
-  train_batch_size: 1024  # 128 working v5e-128, set 256 for v4-64 TPU
+  train_batch_size: 2048  # 128 working v5e-128, set 256 for v4-64 TPU
   num_train_steps: 10000
   steps_per_eval: 250
   tensor_parallel_axes: ["mlp", "heads"]
@@ -38,7 +38,6 @@ trainer:
   batch_axis: "batch"
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-scandengtoken-test/checkpoints"
-    save_interval: 1h
     keep:
       - every: 1000
 initialize_from_hf: "mistralai/Mistral-7B-v0.1"
