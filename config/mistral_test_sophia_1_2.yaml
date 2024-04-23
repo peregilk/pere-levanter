@@ -37,13 +37,13 @@ trainer:
   fsdp_axis: "embed"
   batch_axis: "batch"
   checkpointer:
-    base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/checkpoints"
+    base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-sophia-1-2/checkpoints"
     keep:
       - every: 1000
 initialize_from_hf: "mistralai/Mistral-7B-v0.1"
 use_hf_model_config: false
 hf_save_steps: 5000
-hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-firsttest/hf"
+hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-sophia-1-2/hf"
 optimizer:
   type: sophia-h
   learning_rate: 1.2E-5  # set low for fine-tuning
