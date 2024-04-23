@@ -46,7 +46,7 @@ hf_save_steps: 5000
 hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-defaulttoken-sophia-1-2/hf"
 optimizer:
   type: sophia-h
-  learning_rate: 6E-4
+  learning_rate: 1.2E-5
   weight_decay: 0.2
   min_lr_ratio: 0.1
   gamma: 0.01
