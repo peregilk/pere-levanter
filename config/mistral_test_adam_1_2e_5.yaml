@@ -48,7 +48,7 @@ optimizer:
   learning_rate: 1.2E-5
   weight_decay: 0.2
   min_lr_ratio: 0.1
-  gamma: 0.01
+  # gamma: 0.01
   # sophia needs a minimum amount of warmup or it doesn't do well
   warmup: 2000
   #learning_rate: 1.2E-5  # set low for fine-tuning
