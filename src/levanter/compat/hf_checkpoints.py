@@ -321,6 +321,7 @@ class HFCheckpointConverter(Generic[LevConfig]):
     @staticmethod
     def _infer_config_class(hf_config_class, ref, trust_remote_code):
         if hf_config_class is None:
+            print("1")
             if ref is None:
                 raise ValueError("Must provide either config class or reference_checkpoint")
             path, rev = ref.model_name_or_path, ref.revision
@@ -331,6 +332,7 @@ class HFCheckpointConverter(Generic[LevConfig]):
             )
             clss = type(config)
         elif isinstance(hf_config_class, str):
+            print("2")
             if ref is None:
                 raise ValueError("Must provide either config class or reference_checkpoint")
             path, rev = ref.model_name_or_path, ref.revision
