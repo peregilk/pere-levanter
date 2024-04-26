@@ -344,6 +344,7 @@ class HFCheckpointConverter(Generic[LevConfig]):
             )
             clss = HFConfig
         else:
+            print("3")
             clss = hf_config_class
         print("debug")
         breakpoint()
