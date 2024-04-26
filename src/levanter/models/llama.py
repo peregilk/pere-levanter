@@ -115,6 +115,7 @@ class LlamaConfig(HFCompatConfig):
             initializer_range=hf_config.initializer_range,
             layer_norm_epsilon=hf_config.rms_norm_eps,
             rope_scaling=hf_config.rope_scaling,
+            vocab_size=64000
         )
 
     def to_hf_config(self, vocab_size: int, config_overrides: Optional[Dict] = None) -> HfLlamaConfig:
@@ -127,8 +128,7 @@ class LlamaConfig(HFCompatConfig):
         Returns:
             HfLlamaConfig: HuggingFace's LlamaConfig
         """
-        print("Debugging")
-        breakpoint()
+
         
         if config_overrides is None:
             config_overrides = {}
