@@ -1,4 +1,4 @@
-aConfigimport dataclasses
+import dataclasses
 from dataclasses import dataclass
 from typing import Callable, Dict, Optional, Tuple, Type, Union
 
