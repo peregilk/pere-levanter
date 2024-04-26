@@ -119,8 +119,7 @@ class LlamaConfig(HFCompatConfig):
             activation_function=hf_config.hidden_act,
             initializer_range=hf_config.initializer_range,
             layer_norm_epsilon=hf_config.rms_norm_eps,
-            rope_scaling=hf_config.rope_scaling,
-            vocab_size=hf_config.vocab_size
+            rope_scaling=hf_config.rope_scaling
         )
 
     def to_hf_config(self, vocab_size: int, config_overrides: Optional[Dict] = None) -> HfLlamaConfig:
