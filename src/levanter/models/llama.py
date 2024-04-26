@@ -99,8 +99,7 @@ class LlamaConfig(HFCompatConfig):
             "meta-llama/Llama-2-7b-hf",
             trust_remote_code=True,
             tokenizer="hf-internal-testing/llama-tokenizer",
-            HfConfigClass=HfLlamaConfig,
-            vocab_size=128256
+            HfConfigClass=HfLlamaConfig
         )
 
     @classmethod
@@ -128,6 +127,8 @@ class LlamaConfig(HFCompatConfig):
         Returns:
             HfLlamaConfig: HuggingFace's LlamaConfig
         """
+        vocab_size=128256
+        
         if config_overrides is None:
             config_overrides = {}
 
