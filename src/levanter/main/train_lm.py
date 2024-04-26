@@ -51,7 +51,9 @@ class TrainLmConfig:
 
 def main(config: TrainLmConfig):
     tokenizer = config.data.the_tokenizer
-
+    print("first stop")
+    
+    breakpoint()
     # this is some unpleasant code to allow us to initialize from a hf checkpoint. If this is your first read through,
     # I recommend skipping it for now
     if config.initialize_from_hf:
@@ -80,11 +82,11 @@ def main(config: TrainLmConfig):
             # TODO: log diff of old and new config
             # NB: gross mutability
             # Log the old model config before updating
-            logger.debug("Old model config: {}".format(json.dumps(config.model.config, indent=2)))
+            logger.debug("Old model config: {}".format(config.model))
             # Update the model config with HF config
             config.model = converter.config_from_hf_config(converter.default_hf_config)
             # Log the new model config after updating
-            logger.debug("New model config: {}".format(json.dumps(config.model.config, indent=2)))
+            logger.debug("New model config: {}".format(config.model))
         breakpoint()
         
     elif isinstance(config.model, HFCompatConfig):
