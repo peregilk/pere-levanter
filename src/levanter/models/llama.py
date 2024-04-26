@@ -36,6 +36,7 @@ silence_transformer_nag()
 from transformers import LlamaConfig as HfLlamaConfig  # noqa: E402
 from transformers import PretrainedConfig as HfConfig  # noqa: E402
 
+
 @LmConfig.register_subclass("llama")
 @dataclass(frozen=True)
 class LlamaConfig(HFCompatConfig):
@@ -63,8 +64,7 @@ class LlamaConfig(HFCompatConfig):
     activation_function: str = "silu"
     initializer_range: float = 0.02
     layer_norm_epsilon: float = 1e-5
-    vocab_size: int = 128256  # Now directly included in LlamaConfig
-    
+
     # Attention-related config
     upcast_attn: bool = False
     use_flash_attention: bool = True
@@ -94,18 +94,16 @@ class LlamaConfig(HFCompatConfig):
 
     @cached_classproperty
     def default_hf_checkpoint_converter(cls) -> HFCheckpointConverter["LlamaConfig"]:  # type: ignore
-        print("DEBUG: 3")
         return HFCheckpointConverter(
             cls,  # type: ignore
             "meta-llama/Llama-2-7b-hf",
             trust_remote_code=True,
             tokenizer="hf-internal-testing/llama-tokenizer",
-            HfConfigClass=lambda: LlamaConfig(vocab_size=128256)
+            HfConfigClass=HfLlamaConfig,
         )
 
     @classmethod
     def from_hf_config(cls, hf_config: HfConfig):
-        print("DEBUG: 1")
         return LlamaConfig(
             seq_len=hf_config.max_position_embeddings,
             hidden_dim=hf_config.hidden_size,
@@ -116,12 +114,10 @@ class LlamaConfig(HFCompatConfig):
             activation_function=hf_config.hidden_act,
             initializer_range=hf_config.initializer_range,
             layer_norm_epsilon=hf_config.rms_norm_eps,
-            rope_scaling=hf_config.rope_scaling
+            rope_scaling=hf_config.rope_scaling,
         )
 
     def to_hf_config(self, vocab_size: int, config_overrides: Optional[Dict] = None) -> HfLlamaConfig:
-        print("DEBUG: 2")
-        print(f"Creating HfLlamaConfig with vocab_size: {vocab_size}")
         """Convert to HuggingFace's LlamaConfig
 
         Args:
@@ -131,8 +127,6 @@ class LlamaConfig(HFCompatConfig):
         Returns:
             HfLlamaConfig: HuggingFace's LlamaConfig
         """
-
-        
         if config_overrides is None:
             config_overrides = {}
 
