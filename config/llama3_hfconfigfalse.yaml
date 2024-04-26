@@ -15,7 +15,6 @@ model:
   num_kv_heads: 8
   initializer_range: 0.02
   use_flash_attention: true
-  vocab_size: 128256
 initialize_from_hf: "meta-llama/Meta-Llama-3-8B"
 use_hf_model_config: false
 trainer:
