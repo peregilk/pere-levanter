@@ -65,13 +65,13 @@ def main(config: TrainLmConfig):
         if hasattr(tokenizer, "vocab") and tokenizer.vocab != converter.tokenizer.vocab:
             logger.warning("The tokenizers appear to be different. You may want to check this.")
             if hasattr(tokenizer, 'get_vocab'):
-                logger.debug("Loaded tokenizer vocab size: {}".format(len(tokenizer.get_vocab())))
+                logger.warning("Loaded tokenizer vocab size: {}".format(len(tokenizer.get_vocab())))
             if hasattr(converter.tokenizer, 'get_vocab'):
-                logger.debug("Expected tokenizer vocab size: {}".format(len(converter.tokenizer.get_vocab())))
+                logger.warning("Expected tokenizer vocab size: {}".format(len(converter.tokenizer.get_vocab())))
             if hasattr(tokenizer, 'config'):
-                logger.debug("Loaded tokenizer config: {}".format(json.dumps(tokenizer.config, indent=2)))
+                logger.warning("Loaded tokenizer config: {}".format(json.dumps(tokenizer.config, indent=2)))
             if hasattr(converter.tokenizer, 'config'):
-                logger.debug("Expected tokenizer config: {}".format(json.dumps(converter.tokenizer.config, indent=2)))
+                logger.warning("Expected tokenizer config: {}".format(json.dumps(converter.tokenizer.config, indent=2)))
 
         if isinstance(config.initialize_from_hf, str):
             converter = converter.replaced(reference_checkpoint=config.initialize_from_hf, tokenizer=tokenizer)
@@ -82,11 +82,11 @@ def main(config: TrainLmConfig):
             # TODO: log diff of old and new config
             # NB: gross mutability
             # Log the old model config before updating
-            logger.debug("Old model config: {}".format(config.model))
+            logger.warning("Old model config: {}".format(config.model))
             # Update the model config with HF config
             config.model = converter.config_from_hf_config(converter.default_hf_config)
             # Log the new model config after updating
-            logger.debug("New model config: {}".format(config.model))
+            logger.warning("New model config: {}".format(config.model))
         breakpoint()
         
     elif isinstance(config.model, HFCompatConfig):
