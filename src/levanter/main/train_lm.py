@@ -64,14 +64,13 @@ def main(config: TrainLmConfig):
             logger.warning("The tokenizers appear to be different. You may want to check this.")
             if hasattr(tokenizer, 'get_vocab'):
                 logger.debug("Loaded tokenizer vocab size: {}".format(len(tokenizer.get_vocab())))
-            if hasattr(expected_tokenizer, 'get_vocab'):
-                logger.debug("Expected tokenizer vocab size: {}".format(len(expected_tokenizer.get_vocab())))
+            if hasattr(converter.tokenizer, 'get_vocab'):
+                logger.debug("Expected tokenizer vocab size: {}".format(len(converter.tokenizer.get_vocab())))
             if hasattr(tokenizer, 'config'):
                 logger.debug("Loaded tokenizer config: {}".format(json.dumps(tokenizer.config, indent=2)))
-            if hasattr(expected_tokenizer, 'config'):
-                logger.debug("Expected tokenizer config: {}".format(json.dumps(expected_tokenizer.config, indent=2)))
-            breakpoint()
-            
+            if hasattr(converter.tokenizer, 'config'):
+                logger.debug("Expected tokenizer config: {}".format(json.dumps(converter.tokenizer.config, indent=2)))
+
         if isinstance(config.initialize_from_hf, str):
             converter = converter.replaced(reference_checkpoint=config.initialize_from_hf, tokenizer=tokenizer)
         else:
@@ -80,7 +79,13 @@ def main(config: TrainLmConfig):
         if config.use_hf_model_config:
             # TODO: log diff of old and new config
             # NB: gross mutability
+            # Log the old model config before updating
+            logger.debug("Old model config: {}".format(json.dumps(config.model.config, indent=2)))
+            # Update the model config with HF config
             config.model = converter.config_from_hf_config(converter.default_hf_config)
+            # Log the new model config after updating
+            logger.debug("New model config: {}".format(json.dumps(config.model.config, indent=2)))
+
     elif isinstance(config.model, HFCompatConfig):
         converter = config.model.default_hf_checkpoint_converter
         converter = converter.replaced(tokenizer=tokenizer)
