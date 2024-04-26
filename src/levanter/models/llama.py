@@ -123,6 +123,7 @@ class LlamaConfig(HFCompatConfig):
         )
 
     def to_hf_config(self, vocab_size: int, config_overrides: Optional[Dict] = None) -> HfLlamaConfig:
+        print(f"Creating HfLlamaConfig with vocab_size: {vocab_size}")
         """Convert to HuggingFace's LlamaConfig
 
         Args:
