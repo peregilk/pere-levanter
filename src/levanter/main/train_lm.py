@@ -66,7 +66,8 @@ def main(config: TrainLmConfig):
                 logger.warning("Loaded tokenizer vocab size: {}".format(len(tokenizer.get_vocab())))
             if hasattr(converter.tokenizer, 'get_vocab'):
                 logger.warning("Expected tokenizer vocab size: {}".format(len(converter.tokenizer.get_vocab())))
-
+            breakpoint()
+        
         if isinstance(config.initialize_from_hf, str):
             converter = converter.replaced(reference_checkpoint=config.initialize_from_hf, tokenizer=tokenizer)
         else:
