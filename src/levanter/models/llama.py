@@ -36,6 +36,11 @@ silence_transformer_nag()
 from transformers import LlamaConfig as HfLlamaConfig  # noqa: E402
 from transformers import PretrainedConfig as HfConfig  # noqa: E402
 
+class CustomLlamaConfig(HfLlamaConfig):
+    @property
+    def vocab_size(self):
+        return 128256  # Override the vocab_size here
+
 
 @LmConfig.register_subclass("llama")
 @dataclass(frozen=True)
@@ -99,7 +104,7 @@ class LlamaConfig(HFCompatConfig):
             "meta-llama/Llama-2-7b-hf",
             trust_remote_code=True,
             tokenizer="hf-internal-testing/llama-tokenizer",
-            HfConfigClass=HfLlamaConfig
+            HfConfigClass=CustomLlamaConfig
         )
 
     @classmethod
