@@ -100,7 +100,7 @@ class LlamaConfig(HFCompatConfig):
             "meta-llama/Llama-2-7b-hf",
             trust_remote_code=True,
             tokenizer="hf-internal-testing/llama-tokenizer",
-            HfConfigClass=LlamaConfig
+            HfConfigClass=lambda: LlamaConfig(vocab_size=128256)
         )
 
     @classmethod
