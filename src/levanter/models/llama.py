@@ -40,8 +40,7 @@ class CustomLlamaConfig(HfLlamaConfig):
     @property
     def vocab_size(self):
         return 128256  # Override the vocab_size here
-print("hei")
-breakpoint()
+
 
 @LmConfig.register_subclass("llama")
 @dataclass(frozen=True)
@@ -100,6 +99,7 @@ class LlamaConfig(HFCompatConfig):
 
     @cached_classproperty
     def default_hf_checkpoint_converter(cls) -> HFCheckpointConverter["LlamaConfig"]:  # type: ignore
+        print("DEBUG: 3")
         return HFCheckpointConverter(
             cls,  # type: ignore
             "meta-llama/Llama-2-7b-hf",
@@ -110,6 +110,7 @@ class LlamaConfig(HFCompatConfig):
 
     @classmethod
     def from_hf_config(cls, hf_config: HfConfig):
+        print("DEBUG: 1")
         return LlamaConfig(
             seq_len=hf_config.max_position_embeddings,
             hidden_dim=hf_config.hidden_size,
@@ -124,6 +125,7 @@ class LlamaConfig(HFCompatConfig):
         )
 
     def to_hf_config(self, vocab_size: int, config_overrides: Optional[Dict] = None) -> HfLlamaConfig:
+        print("DEBUG: 2")
         print(f"Creating HfLlamaConfig with vocab_size: {vocab_size}")
         """Convert to HuggingFace's LlamaConfig
 
