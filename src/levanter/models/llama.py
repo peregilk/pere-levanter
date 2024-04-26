@@ -1,4 +1,4 @@
-import dataclasses
+aConfigimport dataclasses
 from dataclasses import dataclass
 from typing import Callable, Dict, Optional, Tuple, Type, Union
 
@@ -40,7 +40,8 @@ class CustomLlamaConfig(HfLlamaConfig):
     @property
     def vocab_size(self):
         return 128256  # Override the vocab_size here
-
+print("hei")
+breakpoint()
 
 @LmConfig.register_subclass("llama")
 @dataclass(frozen=True)
