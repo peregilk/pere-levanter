@@ -100,6 +100,7 @@ class LlamaConfig(HFCompatConfig):
             trust_remote_code=True,
             tokenizer="hf-internal-testing/llama-tokenizer",
             HfConfigClass=HfLlamaConfig,
+            vocab_size=128256
         )
 
     @classmethod
