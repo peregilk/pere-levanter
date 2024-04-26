@@ -521,6 +521,9 @@ class HFCheckpointConverter(Generic[LevConfig]):
         else:
             config = self.config_from_hf_config(hf_config)
 
+        print("debug")
+        breakpoint()
+              
         # Vocab: first we have to resize the vocab as loaded from the checkpoint
         tokenizer_Vocab = self.Vocab
         Vocab = tokenizer_Vocab.resize(hf_config.vocab_size)
