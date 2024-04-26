@@ -85,7 +85,8 @@ def main(config: TrainLmConfig):
             config.model = converter.config_from_hf_config(converter.default_hf_config)
             # Log the new model config after updating
             logger.debug("New model config: {}".format(json.dumps(config.model.config, indent=2)))
-
+        breakpoint()
+        
     elif isinstance(config.model, HFCompatConfig):
         converter = config.model.default_hf_checkpoint_converter
         converter = converter.replaced(tokenizer=tokenizer)
