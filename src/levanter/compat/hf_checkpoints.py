@@ -520,7 +520,7 @@ class HFCheckpointConverter(Generic[LevConfig]):
             lm_model_cls = config.model_type
         else:
             config = self.config_from_hf_config(hf_config)
-              
+
         # Vocab: first we have to resize the vocab as loaded from the checkpoint
         tokenizer_Vocab = self.Vocab
         Vocab = tokenizer_Vocab.resize(hf_config.vocab_size)
