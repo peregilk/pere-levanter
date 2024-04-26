@@ -16,13 +16,13 @@ model:
   initializer_range: 0.02
   use_flash_attention: true
 initialize_from_hf: "meta-llama/Meta-Llama-3-8B"
-use_hf_model_config: false
+use_hf_model_config: true
 trainer:
   wandb:
     entity: "nbailab"
     project: "north-mistral"
     tags: ["openwebtext", "llamatre"]
-    name: north-llamatre-hfconfigtrue
+    name: north-llamatre-hfconfigtrue2
   mp: p=f32,c=bfloat16
   train_batch_size: 256  # 1024 working v5e-128, set 256 for v4-64 TPU
   num_train_steps: 10000
@@ -31,7 +31,7 @@ trainer:
   fsdp_axis: "embed"
   batch_axis: "batch"
   checkpointer:
-    base_path: "gs://levanter-checkpoint-eu/north-llama3-hfconfigtrue/checkpoints"
+    base_path: "gs://levanter-checkpoint-eu/north-llama3-hfconfigtrue2/checkpoints"
     keep:
       - every: 1000
 optimizer:
@@ -40,4 +40,4 @@ optimizer:
   min_lr_ratio: 0.1
   warmup: 1000
 hf_save_steps: 5000
-hf_save_path: "gs://levanter-checkpoint-eu/north-llama3-hfconfigtrue/hf"
+hf_save_path: "gs://levanter-checkpoint-eu/north-llama3-hfconfigtrue2/hf"
