@@ -62,7 +62,16 @@ def main(config: TrainLmConfig):
         converter = config.model.default_hf_checkpoint_converter
         if hasattr(tokenizer, "vocab") and tokenizer.vocab != converter.tokenizer.vocab:
             logger.warning("The tokenizers appear to be different. You may want to check this.")
-
+            if hasattr(tokenizer, 'get_vocab'):
+                logger.debug("Loaded tokenizer vocab size: {}".format(len(tokenizer.get_vocab())))
+            if hasattr(expected_tokenizer, 'get_vocab'):
+                logger.debug("Expected tokenizer vocab size: {}".format(len(expected_tokenizer.get_vocab())))
+            if hasattr(tokenizer, 'config'):
+                logger.debug("Loaded tokenizer config: {}".format(json.dumps(tokenizer.config, indent=2)))
+            if hasattr(expected_tokenizer, 'config'):
+                logger.debug("Expected tokenizer config: {}".format(json.dumps(expected_tokenizer.config, indent=2)))
+            breakpoint()
+            
         if isinstance(config.initialize_from_hf, str):
             converter = converter.replaced(reference_checkpoint=config.initialize_from_hf, tokenizer=tokenizer)
         else:
