@@ -1,7 +1,7 @@
 
 data:
   train_urls:
-    - "gs://levanter-dataset-eu/NCC_plus_scandi/train-shard-{0001..0147}-of-0147.jsonl.gz"
+    - "gs://levanter-dataset-eu/NCC_plus_scandi/train-shard-{0001..0147}-of-0147.json.gz"
   validation_urls:
     - "gs://levanter-dataset-eu/NCC_plus_scandi/validation-shard-0001-of-0001.json.gz"
   cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/mistral/"
