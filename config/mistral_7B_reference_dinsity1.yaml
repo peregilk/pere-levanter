@@ -1,0 +1,53 @@
+
+data:
+  train_urls:
+    - "gs://levanter-dataset-eu/NCC_plus_scandi_density1/train-shard-{0001..0147}-of-0147.json.gz"
+  validation_urls:
+    - "gs://levanter-dataset-eu/NCC_plus_scandi/validation-shard-0001-of-0001.json.gz"
+  cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/mistral_density1/"
+  tokenizer: "mistralai/Mistral-7B-v0.1"
+model:
+  type: mistral
+  seq_len: 2048
+  hidden_dim: 4096
+  intermediate_dim: 14336
+  num_layers: 32
+  num_heads: 32
+  num_kv_heads: 8
+  activation_function: silu
+  initializer_range: 0.02
+  layer_norm_epsilon: 1.0e-05
+  upcast_attn: false
+  use_flash_attention: true
+  flash_attention_block_size: null
+  scan_layers: true
+  use_bias: false
+  rope_scaling: null
+  sliding_window: 4096
+trainer:
+  wandb:
+    entity: "nbailab"
+    project: "north-mistral"
+    tags: ["openwebtext", "mistral"]
+    name: north-mistral-7b-reference100k-density1
+  mp: p=f32,c=bfloat16
+  train_batch_size: 1024  
+  num_train_steps: 100000
+  steps_per_eval: 250
+  tensor_parallel_axes: ["mlp", "heads"]
+  fsdp_axis: "embed"
+  batch_axis: "batch"
+  checkpointer:
+    base_path: "gs://levanter-checkpoint-eu/north-mistral-7b-reference100k-density1/checkpoints"
+    keep:
+      - every: 5000
+initialize_from_hf: "mistralai/Mistral-7B-v0.1"
+use_hf_model_config: false
+hf_save_steps: 5000
+hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-reference100k-density1/hf"
+hf_upload: "north/mistral-7b-reference100k-density1"
+optimizer:
+  learning_rate: 1.2E-5
+  weight_decay: 0.1
+  min_lr_ratio: 0.1
+  warmup: 2000
