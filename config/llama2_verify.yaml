@@ -23,9 +23,9 @@ trainer:
   fsdp_axis: "embed"
   batch_axis: "batch"
   checkpointer:
-  base_path: "gs://levanter-checkpoint-eu/north-llama2-verify/checkpoints"
-  keep:
-    - every: 1000
+    base_path: "gs://levanter-checkpoint-eu/north-llama2-verify/checkpoints"
+    keep:
+      - every: 1000
 optimizer:
   learning_rate: 1.2E-5  # set low for fine-tuning
   weight_decay: 0.1
