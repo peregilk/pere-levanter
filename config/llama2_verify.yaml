@@ -4,10 +4,10 @@ data:
   validation_urls:
     - "gs://levanter-dataset-eu/NCC_plus_scandi/validation-shard-0001-of-0001.json.gz"
   cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/llama2verify/"
-  tokenizer: "meta-llama/Llama-2-70b-hf"
+  tokenizer: "meta-llama/Llama-2-7b-hf"
 model:
   type: llama
-initialize_from_hf: "meta-llama/Llama-2-70b-hf"
+initialize_from_hf: "meta-llama/Llama-2-7b-hf"
 use_hf_model_config: false
 trainer:
   wandb:
