@@ -1,0 +1,44 @@
+data:
+  train_urls:
+    - "gs://levanter-dataset-eu/NCC_plus_scandi/train-shard-{0001..0147}-of-0147.json.gz"
+  validation_urls:
+    - "gs://levanter-dataset-eu/NCC_plus_scandi/validation-shard-0001-of-0001.json.gz"
+  cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/llama3secondtest/"
+  tokenizer: "meta-llama/Meta-Llama-3-8B"
+model:
+  type: llama
+  seq_len: 2048
+  hidden_dim: 4096
+  intermediate_dim: 14336
+  num_layers: 32
+  num_heads: 32
+  num_kv_heads: 8
+  initializer_range: 0.02
+  use_flash_attention: true
+initialize_from_hf: "meta-llama/Meta-Llama-3-8B"
+use_hf_model_config: false
+trainer:
+  wandb:
+    entity: "nbailab"
+    project: "north-mistral"
+    tags: ["llamatre"]
+    name: north-llamatre-reference200k
+  mp: p=f32,c=bfloat16
+  train_batch_size: 512  # 1024 working v5e-128, set 256 for v4-64 TPU
+  num_train_steps: 200000
+  steps_per_eval: 250
+  tensor_parallel_axes: ["mlp", "heads"]
+  fsdp_axis: "embed"
+  batch_axis: "batch"
+  checkpointer:
+    base_path: "gs://levanter-checkpoint-eu/north-llama3-reference200k/checkpoints"
+    keep:
+      - every: 5000
+optimizer:
+  learning_rate: 1.2e-5
+  weight_decay: 0.1
+  min_lr_ratio: 0.1
+  warmup: 2000
+hf_save_steps: 5000
+hf_save_path: "gs://levanter-checkpoint-eu/north-llama3-reference200k/hf"
+hf_upload: "north/llama3-reference200k"
