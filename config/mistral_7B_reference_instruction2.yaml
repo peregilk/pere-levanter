@@ -3,7 +3,7 @@ data:
   train_urls:
     - "gs://levanter-dataset-eu/PlayWithWords2/train-shard-{0001..0147}-of-0147.jsonl.gz"
   validation_urls:
-    - "gs://levanter-dataset-eu/PlayWithWords2/validation-shard-0001-of-0001.json.gz"
+    - "gs://levanter-dataset-eu/PlayWithWords2/validation-shard-0001-of-0001.jsonl.gz"
   cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/mistral_fine2/"
   tokenizer: "mistralai/Mistral-7B-v0.1"
 model:
