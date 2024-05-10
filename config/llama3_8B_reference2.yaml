@@ -33,7 +33,7 @@ trainer:
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/north-llama3-reference100k-v2/checkpoints"
     keep:
-      - every: 5000
+      - every: 2500
 optimizer:
   learning_rate: 1.2e-5
   weight_decay: 0.1
