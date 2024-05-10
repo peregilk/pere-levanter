@@ -22,7 +22,7 @@ trainer:
     entity: "nbailab"
     project: "north-mistral"
     tags: ["llamatre"]
-    name: north-llamatre-reference200k
+    name: north-llamatre-reference100k-v2
   mp: p=f32,c=bfloat16
   train_batch_size: 512  # 1024 working v5e-128, set 256 for v4-64 TPU
   num_train_steps: 200000
