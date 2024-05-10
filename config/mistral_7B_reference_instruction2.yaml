@@ -45,7 +45,7 @@ initialize_from_hf: "north/mistral-7b-reference100k"
 use_hf_model_config: false
 hf_save_steps: 5000
 hf_save_path: "gs://levanter-checkpoint-eu/north-mistral-7b-reference-instruction2/hf"
-hf_upload: "north/llama3-reference100k-v2"
+hf_upload: "north/mistral-7b-reference-instruction2"
 optimizer:
   learning_rate: 1.2E-5
   weight_decay: 0.1
