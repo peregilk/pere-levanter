@@ -29,11 +29,12 @@ trainer:
   tensor_parallel_axes: ["mlp", "heads"]
   fsdp_axis: "embed"
   batch_axis: "batch"
+  load_checkpoint_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction1/checkpoints"
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction1/checkpoints"
     keep:
       - every: 2000
-initialize_from_hf: "meta-llama/Meta-Llama-3-8B"
+# initialize_from_hf: "meta-llama/Meta-Llama-3-8B"
 use_hf_model_config: false
 hf_save_steps: 2000
 hf_save_path: "gs://levanter-checkpoint-eu/llama3-8B-base-instruction1/hf"
