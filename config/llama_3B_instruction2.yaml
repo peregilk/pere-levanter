@@ -1,0 +1,45 @@
+
+data:
+  train_urls:
+    - "gs://levanter-dataset-eu/PlayWithWords2/train-shard-{0001..0147}-of-0147.jsonl.gz"
+  validation_urls:
+    - "gs://levanter-dataset-eu/PlayWithWords2/validation-shard-0001-of-0001.jsonl.gz"
+  cache_dir: "gs://levanter-cache-eu/NCC_plus_scandi/tokenized/llama3_instruct/"
+  tokenizer: "meta-llama/Meta-Llama-3-8B"
+model:
+  type: llama
+  seq_len: 2048
+  hidden_dim: 4096
+  intermediate_dim: 14336
+  num_layers: 32
+  num_heads: 32
+  num_kv_heads: 8
+  initializer_range: 0.02
+  use_flash_attention: true
+trainer:
+  wandb:
+    entity: "nbailab"
+    project: "north-mistral"
+    tags: ["openwebtext", "llama3"]
+    name: meta-llama/llama3-8B-base-instruction2
+  mp: p=f32,c=bfloat16
+  train_batch_size: 1024  
+  num_train_steps: 25000
+  steps_per_eval: 250
+  tensor_parallel_axes: ["mlp", "heads"]
+  fsdp_axis: "embed"
+  batch_axis: "batch"
+  checkpointer:
+    base_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction2/checkpoints"
+    keep:
+      - every: 2000
+initialize_from_hf: "meta-llama/Meta-Llama-3-8B-Instruct"
+use_hf_model_config: false
+hf_save_steps: 2000
+hf_save_path: "gs://levanter-checkpoint-eu/llama3-8B-base-instruction2/hf"
+hf_upload: "north/llama3-8B-base-instruction2"
+optimizer:
+  learning_rate: 1.2E-5
+  weight_decay: 0.1
+  min_lr_ratio: 0.1
+  warmup: 2000
