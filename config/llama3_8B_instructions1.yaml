@@ -29,7 +29,7 @@ trainer:
   tensor_parallel_axes: ["mlp", "heads"]
   fsdp_axis: "embed"
   batch_axis: "batch"
-  load_checkpoint_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction1/checkpoints/ez7uksy3/step-5000"
+  load_checkpoint_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction1/checkpoints/nny64new/step-18000"
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction1/checkpoints"
     keep:
