@@ -29,14 +29,14 @@ trainer:
   tensor_parallel_axes: ["mlp", "heads"]
   fsdp_axis: "embed"
   batch_axis: "batch"
-  load_checkpoint_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction2/checkpoints/va20r86y/step-8000"
+  load_checkpoint_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction2/checkpoints/mggxwop6/step-10000"
   checkpointer:
     base_path: "gs://levanter-checkpoint-eu/meta-llama/llama3-8B-base-instruction2/checkpoints"
     keep:
-      - every: 2000
+      - every: 5000
 #initialize_from_hf: "meta-llama/Meta-Llama-3-8B-Instruct"
 use_hf_model_config: false
-hf_save_steps: 2000
+hf_save_steps: 4000
 hf_save_path: "gs://levanter-checkpoint-eu/llama3-8B-base-instruction2/hf"
 hf_upload: "north/llama3-8B-base-instruction2"
 optimizer:
