@@ -17,7 +17,7 @@ model:
   initializer_range: 0.02
   layer_norm_epsilon: 1.0e-05
   upcast_attn: false
-  use_flash_attention: true
+  use_flash_attention: false
   flash_attention_block_size: null
   scan_layers: true
   use_bias: false
