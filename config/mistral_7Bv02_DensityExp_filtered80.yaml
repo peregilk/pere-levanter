@@ -1,9 +1,9 @@
 data:
   train_urls:
-    - "gs://levanter-dataset-eu/DensityExperiment/filtered100/train-shard-{0001..0147}-of-0147.jsonl.gz"
+    - "gs://levanter-dataset-eu/DensityExperiment/filtered80/train-shard-{0001..0147}-of-0147.jsonl.gz"
   validation_urls:
     - "gs://levanter-dataset-eu/NCC_plus_scandi/validation-shard-0001-of-0001.json.gz"
-  cache_dir: "gs://levanter-cache-eu/tokenized/DensityExperiment-filtered100/"
+  cache_dir: "gs://levanter-cache-eu/tokenized/DensityExperiment-filtered80/"
   tokenizer: "MaziyarPanahi/Mistral-7B-v0.2"
 model:
   type: mistral
@@ -28,7 +28,7 @@ trainer:
     entity: "nbailab"
     project: "DensityExperiment"
     tags: ["openwebtext", "mistral"]
-    name: filtered100
+    name: filtered80
   mp: p=f32,c=bfloat16
   train_batch_size: 1024  
   num_train_steps: 25000
@@ -37,14 +37,14 @@ trainer:
   fsdp_axis: "embed"
   batch_axis: "batch"
   checkpointer:
-    base_path: "gs://levanter-checkpoint-eu/mistral-7b-v02-DensityExperiment-filtered100/checkpoints"
+    base_path: "gs://levanter-checkpoint-eu/mistral-7b-v02-DensityExperiment-filtered80/checkpoints"
     keep:
       - every: 5000
 initialize_from_hf: "MaziyarPanahi/Mistral-7B-v0.2"
 use_hf_model_config: false
 hf_save_steps: 5000
-hf_save_path: "gs://levanter-checkpoint-eu/mistral-7b-v02-DensityExperiment-filtered100/hf"
-hf_upload: "north/mistral-7b-v02-DensityExperiment-filtered100"
+hf_save_path: "gs://levanter-checkpoint-eu/mistral-7b-v02-DensityExperiment-filtered80/hf"
+hf_upload: "north/mistral-7b-v02-DensityExperiment-filtered80"
 optimizer:
   learning_rate: 1.2E-5
   weight_decay: 0.1
