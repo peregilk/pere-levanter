@@ -23,6 +23,7 @@ model:
   use_bias: false
   rope_scaling: null
   sliding_window: 4096
+  attn_backend: SPLASH
 trainer:
   wandb:
     entity: "nbailab"
