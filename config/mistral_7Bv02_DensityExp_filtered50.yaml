@@ -43,7 +43,7 @@ trainer:
       - every: 5000
 initialize_from_hf: "MaziyarPanahi/Mistral-7B-v0.2"
 use_hf_model_config: false
-hf_save_steps: 2500
+hf_save_steps: 5000
 hf_save_path: "gs://levanter-checkpoint-eu/mistral-7b-v02-DensityExperiment-filtered50/hf"
 hf_upload: "north/mistral-7b-v02-DensityExperiment-filtered50"
 optimizer:
